@@ -1,0 +1,35 @@
+syntax = "proto3";
+
+option csharp_namespace = "GRPCService1";
+
+package Northwind;
+
+service EmployeeCRUD {
+	rpc SelectAll (Empty) returns (Employees);
+	rpc SelectById (EmployeeFilter) returns (Employee);
+	rpc Insert (Employee) returns (Empty);
+	rpc Update (Employee) returns (Empty);
+	rpc Delete (EmployeeFilter) returns (Empty);
+}
+
+message Empty{
+
+}
+
+message Employee{
+	int32 employeeID = 1;
+	string firstName = 2;
+	string lastName = 3;
+}
+
+message Employees{
+	repeated Employee items = 1;
+}
+
+message EmployeeFilter{
+	int32 employeeID = 1;
+}
+
+
+
+
